@@ -3,7 +3,7 @@ puppet-apagado-terminales
 
 Módulo puppet para instalar scripts que apagan los terminales al apagar, reiniciar o cerrar sesión en el servidor LTSP
 
-BREVE DESCRIPCION DE LA EJECUCION DEL MODULO
+BREVE DESCRIPCION DE LA EJECUCION DEL MóDULO
 --------------------------------------------
 
 Destino: 
@@ -35,7 +35,7 @@ IMPORTANTE: Incluir el paquete dsh en el fichero mayhave del ltspserver:
             /etc/puppet/files/mayhave.ltspserver
             
 
-INSTRUCCIONES DE INSTALACION DEL MODULO
+INSTRUCCIONES DE INSTALACION DEL MóDULO
 ---------------------------------------
 
 1) Desempaquetar en /etc/puppet/modules
