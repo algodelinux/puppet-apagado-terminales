@@ -5,15 +5,19 @@
 # Última modificación: 27/11/2013
 
 # apagaterminales.sh -> Apaga los terminales de un aula
-# El script hace uso de avahi-browse y ssh-keyscan para cumplir con su función.
+# El script hace uso de nmap y ssh-keyscan para cumplir con su función.
 # Está pensado para ejecutar el comando de apagado tan sólo sobre las máquinas que se detecten encendidas
 # pero al mismo tiempo, va construyendo una lista con las ips de las máquinas que se van detectando.
 # Hace uso de ssh-keyscan para obtener las claves rsa de los terminales encendidos y añadirlas al fichero 
 # /root/.ssh/known_hosts del servidor de terminales.
 # Borra los temporales de los usuarios que iniciaron sesión en los terminales y mata sus procesos
 
+# Instalamos nmap si no estaba instalado aun
+dpkg -l | grep ^"ii  nmap" > /dev/null || apt-get -y install nmap
+
 # Detectamos los terminales encendidos, tal y como está definido en ldap
-avahi-browse -trpk -d local _workstation._tcp 2>/dev/null | grep 192.168.0. | grep -v '_pro\|\-pro'| cut -d";" -f8 > /tmp/terminalesUp
+#avahi-browse -trpk -d local _workstation._tcp 2>/dev/null | grep 192.168.0. | grep -v '_pro\|\-pro'| cut -d";" -f8 > /tmp/terminalesUp
+nmap -sP 192.168.0.0/24 |grep -v -e 192.168.0.0 -e 192.168.0.1 -e 192.168.0.254 -e 192.168.0.255 | grep -oiE '([0-9]{1,3}\.){3}[0-9]{1,3}' > /tmp/terminalesUp
 
 # Obtenemos las claves rsa de los terminales encendidos
 ssh-keyscan -t rsa -f /tmp/terminalesUp > /tmp/rsaterminalesUp
