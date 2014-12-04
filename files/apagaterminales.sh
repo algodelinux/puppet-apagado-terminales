@@ -2,7 +2,7 @@
 # Esteban M. Navas
 # IES Valle del Jerte - Plasencia
 # 03/02/2011
-# Última modificación: 27/11/2013
+# Última modificación: 04/12/2014
 
 # apagaterminales.sh -> Apaga los terminales de un aula
 # El script hace uso de nmap y ssh-keyscan para cumplir con su función.
